@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: user-portal
+    env: custom
+    plan: free
+    branch: master
+    buildCommand: "./mvnw clean install"
+    startCommand: "./mvnw spring-boot:run"
+    region: oregon
