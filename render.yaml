@@ -1,9 +1,16 @@
 services:
   - type: web
     name: user-portal
-    env: custom
-    plan: free
-    branch: master
-    buildCommand: "./mvnw clean install"
-    startCommand: "./mvnw spring-boot:run"
-    region: oregon
+    env: docker
+    branch: main
+    buildCommand: docker build -t user-portal .
+    startCommand: docker run -p 8080:8080 user-portal
+    envVars:
+      - key: MYSQLHOST
+        value: your-mysql-host
+      - key: MYSQLUSER
+        value: your-mysql-user
+      - key: MYSQLPASSWORD
+        value: your-mysql-password
+      - key: MYSQLDATABASE
+        value: your-database-name
