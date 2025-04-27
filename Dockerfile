@@ -1,14 +1,15 @@
-# Use an official Java runtime as a parent image
-FROM openjdk:17-jdk-alpine
+# Use a Java 17 base image
+FROM openjdk:17-jdk-slim
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the JAR file from target directory (change based on your project name)
-COPY target/User-Portal.jar /app/User-Portal.jar
+# Copy the .jar file into the container
+COPY target/MiniProject2-0.0.1-SNAPSHOT.jar /app/application.jar
 
-# Expose port 8080 (default for Spring Boot)
+
+# Expose the port your app runs on (typically 8080 for Spring Boot)
 EXPOSE 8080
 
-# Command to run the JAR file
-ENTRYPOINT ["java", "-jar", "/app/User-Portal.jar"]
+# Command to run your application
+CMD ["java", "-jar", "application.jar"]
